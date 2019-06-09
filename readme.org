@@ -1,0 +1,13 @@
+#+TITLE: HG Histedit
+
+An emacs interface to hg histedit.
+
+* Melpa
+   I recommend using [[https://github.com/jwiegley/use-package][use-package]].
+
+   #+begin_src emacs-lisp :tangle yes
+(use-package hg-histedit
+  :ensure t
+  :config
+  (hg-histedit-setup))
+   #+end_src
