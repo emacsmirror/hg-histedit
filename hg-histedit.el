@@ -73,6 +73,11 @@
 (require 'with-editor)
 (eval-when-compile (require 'subr-x))
 
+(defcustom hg-histedit-executable "hg"
+  "Executable for hg."
+  :type 'string
+  :group 'hg-histedit)
+
 (defmacro hg-histedit-create-change-action (&rest actions)
   "Create `hg-histedit' change functions.
 
@@ -121,7 +126,8 @@ ACTIONS is the the list of change actions to create a function."
 (defun hg-histedit-abort ()
   "Abort current hg histedit session."
   (interactive)
-  (shell-command "hg histedit --abort"))
+  (shell-command
+   (format "%s histedit --abort" hg-histedit-executable)))
 
 ;; Entry point into hg histedit.
 
@@ -132,8 +138,8 @@ If CHANGESET, run histedit starting with CHANGESET."
   (with-editor
     (let ((output-buffer (generate-new-buffer " *hg-histedit*"))
           (commands (if changeset
-                        `("hg" "histedit" "--rev" ,changeset)
-                      '("hg" "histedit"))))
+                        `(,hg-histedit-executable "histedit" "--rev" ,changeset)
+                      `(,hg-histedit-executable "histedit"))))
       (make-process
        :name "hg-histedit"
        :buffer output-buffer
