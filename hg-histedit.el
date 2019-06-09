@@ -74,7 +74,9 @@
 (eval-when-compile (require 'subr-x))
 
 (defmacro hg-histedit-create-change-action (&rest actions)
-  "Create `hg-histedit' change functions."
+  "Create `hg-histedit' change functions.
+
+ACTIONS is the the list of change actions to create a function."
   `(progn
      ,@(cl-loop
         for action in actions
@@ -124,7 +126,9 @@
 ;; Entry point into hg histedit.
 
 (defun hg-histedit-run (&optional changeset)
-  "Run hg histedit in a separate process."
+  "Run hg histedit in a separate process.
+
+If CHANGESET, run histedit starting with CHANGESET."
   (with-editor
     (let ((output-buffer (generate-new-buffer " *hg-histedit*"))
           (commands (if changeset
@@ -206,9 +210,9 @@ Histedit commit files can be generated when you specify 'mess' in an
   "Move current commit up."
   (interactive)
   (when (hg-histedit-current-line-empty-p)
-    (user-error "There is no commit on this line."))
+    (user-error "There is no commit on this line"))
   (when (bobp)
-    (user-error "This is already the first commit."))
+    (user-error "This is already the first commit"))
   (let ((inhibit-read-only t))
     (transpose-lines 1)
     (forward-line -2)))
@@ -217,11 +221,11 @@ Histedit commit files can be generated when you specify 'mess' in an
   "Move current commit down."
   (interactive)
   (when (hg-histedit-current-line-empty-p)
-    (user-error "There is no commit on this line."))
+    (user-error "There is no commit on this line"))
   (save-mark-and-excursion
     (forward-line 1)
     (when (hg-histedit-current-line-empty-p)
-      (user-error "This is already the last commit.")))
+      (user-error "This is already the last commit")))
   (let ((inhibit-read-only t))
     (forward-line 1)
     (transpose-lines 1)
@@ -239,7 +243,7 @@ Histedit commit files can be generated when you specify 'mess' in an
   "Return changeset at point."
   (when (not (derived-mode-p 'log-view-mode))
     (user-error
-     "Only call hg-histedit-changeset-at-point in `log-view-mode' buffers."))
+     "Only call hg-histedit-changeset-at-point in `log-view-mode' buffers"))
   (save-mark-and-excursion
     (beginning-of-defun)
     (string-trim
