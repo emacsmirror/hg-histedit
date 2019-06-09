@@ -10,7 +10,8 @@
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/hg-histedit
 ;; Version: 0.0.1
-;; Package-Requires: ((emacs "25.1") (with-editor))
+;; Package-Requires: ((emacs "25.1") (with-editor "20190511.1157"))
+;; Package-Version: 20190609
 ;; Keywords: mercurial, hg, emacs, tools
 ;; HomePage: https://github.com/jojojames/hg-histedit
 
@@ -309,3 +310,4 @@ Histedit commit files can be generated when you specify 'mess' in an
     (define-key vc-hgcmd-log-view-mode-map "r" 'hg-histedit-edit-at-point)))
 
 (provide 'hg-histedit)
+;;; hg-histedit.el ends here
