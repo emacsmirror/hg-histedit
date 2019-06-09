@@ -291,6 +291,7 @@ Histedit commit files can be generated when you specify 'mess' in an
 ;;; Autoloads
 
 ;;;###autoload
+;; e.g. hg-histedit-mO1yg5.histedit.hg.txt
 (defconst hg-histedit-filename-regexp "hg-histedit-")
 ;; e.g. hg-editor-IaDdJB.commit.hg.txt
 (defconst hg-histedit-commit-regexp "hg-editor-")
