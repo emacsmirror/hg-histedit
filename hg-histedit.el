@@ -4,13 +4,13 @@
 
 ;;
 ;; You should have received a copy of the AUTHORS.md file which
-;; lists all contributors.  If not, see http://magit.vc/authors.
+;; lists all contributors.  If not, see https://magit.vc/authors.
 
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/hg-histedit
 ;; Version: 0.0.1
-;; Package-Requires: ((emacs "25.1") (with-editor "20190511.1157"))
+;; Package-Requires: ((emacs "25.1") (with-editor "2.8.3"))
 ;; Package-Version: 20190609
 ;; Keywords: mercurial, hg, emacs, tools
 ;; HomePage: https://github.com/jojojames/hg-histedit
@@ -28,7 +28,7 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this file.  If not, see <http://www.gnu.org/licenses/>.
+;; along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -247,7 +247,7 @@ Histedit commit files can be generated when you specify 'mess' in an
 
 (defun hg-histedit-changeset-at-point ()
   "Return changeset at point."
-  (when (not (derived-mode-p 'log-view-mode))
+  (unless (derived-mode-p 'log-view-mode)
     (user-error
      "Only call hg-histedit-changeset-at-point in `log-view-mode' buffers"))
   (save-mark-and-excursion
