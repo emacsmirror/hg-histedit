@@ -2,18 +2,12 @@
 
 ;; Copyright (C) 2019 James Nguyen
 
-;;
-;; You should have received a copy of the AUTHORS.md file which
-;; lists all contributors.  If not, see https://magit.vc/authors.
-
 ;; Author: James Nguyen <james@jojojames.com>
 ;; Maintainer: James Nguyen <james@jojojames.com>
 ;; URL: https://github.com/jojojames/hg-histedit
-;; Version: 0.0.1
 ;; Package-Requires: ((emacs "25.1") (with-editor "2.8.3"))
 ;; Package-Version: 20190609
 ;; Keywords: mercurial, hg, emacs, tools
-;; HomePage: https://github.com/jojojames/hg-histedit
 
 ;; This file is not part of GNU Emacs.
 
@@ -41,8 +35,8 @@
 ;; This package provides the major-mode `hg-histedit-mode' which adds
 ;; some additional keybindings.
 ;;
-;;   C-c C-c  Tell Git to make it happen.
-;;   C-c C-k  Tell Git that you changed your mind, i.e. abort.
+;;   C-c C-c  Tell Hg to make it happen.
+;;   C-c C-k  Tell Hg that you changed your mind, i.e. abort.
 ;;
 ;; as well as shortkey commands to modify the changeset.
 
@@ -103,7 +97,7 @@ ACTIONS is the the list of change actions to create a function."
   "Face for the sha1 part of the log output."
   :group 'hg-histedit-faces)
 
-(defface hg-histedit-rebase-description nil
+(defface hg-histedit-description nil
   "Face for commit descriptions."
   :group 'hg-histedit-faces)
 
@@ -288,11 +282,11 @@ Histedit commit files can be generated when you specify 'mess' in an
                 " \\(?3:[^ \n]+\\) \\(?4:.*\\)"))))
 
 (defun hg-histedit-mode-font-lock-keywords ()
-  "Font lock keywords for Git-Rebase mode."
+  "Font lock keywords for `hg-histedit-mode'."
   `((,(concat "^" (cdr (assq 'commit hg-histedit-line-regexps)))
      (1 'font-lock-keyword-face)
      (3 'hg-histedit-hash)
-     (4 'hg-histedit-rebase-description))))
+     (4 'hg-histedit-description))))
 
 ;;; Autoloads
 
