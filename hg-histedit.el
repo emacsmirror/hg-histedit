@@ -117,7 +117,7 @@ ACTIONS is the the list of change actions to create a function."
   "Run hg histedit with the changeset at point."
   (interactive)
   (let ((changeset (hg-histedit-changeset-at-point)))
-    (hg-histedit-run changeset)))
+    (hg-histedit changeset)))
 
 ;;;###autoload
 (defun hg-histedit-abort ()
