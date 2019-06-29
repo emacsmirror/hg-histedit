@@ -65,7 +65,16 @@
 
 ;;; Code:
 (require 'with-editor)
-(eval-when-compile (require 'subr-x))
+(require 'subr-x)
+
+(defgroup hg-histedit nil
+  "A major mode for hg histedit."
+  :group 'tools)
+
+(defgroup hg-histedit-faces nil
+  "Faces uesd by `hg-histedit-mode'."
+  :group 'faces
+  :group 'hg-histedit)
 
 (defcustom hg-histedit-executable "hg"
   "Executable for hg."
@@ -111,24 +120,18 @@ ACTIONS is the the list of change actions to create a function."
     (hg-histedit-run changeset)))
 
 ;;;###autoload
-(defun hg-histedit ()
-  "Run hg histedit."
-  (interactive)
-  (hg-histedit-run))
-
-;;;###autoload
 (defun hg-histedit-abort ()
   "Abort current hg histedit session."
   (interactive)
   (shell-command
    (format "%s histedit --abort" hg-histedit-executable)))
 
-;; Entry point into hg histedit.
-
-(defun hg-histedit-run (&optional changeset)
+;;;###autoload
+(defun hg-histedit (&optional changeset)
   "Run hg histedit in a separate process.
 
 If CHANGESET, run histedit starting with CHANGESET."
+  (interactive)
   (with-editor
     (let ((output-buffer (generate-new-buffer " *hg-histedit*"))
           (commands (if changeset
