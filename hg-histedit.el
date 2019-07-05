@@ -100,9 +100,7 @@ ACTIONS is the the list of change actions to create a function."
 
 ;; Faces
 
-(defface hg-histedit-hash
-  '((((class color) (background light)) :foreground "grey60")
-    (((class color) (background  dark)) :foreground "grey40"))
+(defface hg-histedit-hash '((t (:inherit font-lock-constant-face)))
   "Face for the sha1 part of the log output."
   :group 'hg-histedit-faces)
 
