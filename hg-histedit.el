@@ -172,18 +172,6 @@ If CHANGESET, run histedit starting with CHANGESET."
     (define-key map "u" 'hg-histedit-undo)
     map))
 
-(with-eval-after-load 'evil
-  (when (fboundp 'evil-define-key*)
-    (evil-define-key* 'normal hg-histedit-mode-map
-                      "e" 'hg-histedit-modify-commit-with-edit
-                      "m" 'hg-histedit-modify-commit-with-mess
-                      "p" 'hg-histedit-modify-commit-with-pick
-                      "b" 'hg-histedit-modify-commit-with-base
-                      "d" 'hg-histedit-modify-commit-with-drop
-                      "f" 'hg-histedit-modify-commit-with-fold
-                      "r" 'hg-histedit-modify-commit-with-roll
-                      "u" 'hg-histedit-undo)))
-
 (define-derived-mode hg-histedit-mode special-mode "HG Histedit"
   "Major mode for editing Mercurial Histedit file.
 
