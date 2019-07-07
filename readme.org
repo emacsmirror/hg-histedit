@@ -1,13 +1,15 @@
 #+TITLE: HG Histedit
 
+[[https://melpa.org/#/hg-histedit][file:https://melpa.org/packages/hg-histedit-badge.svg]]
+
 An emacs interface to hg histedit.
 
 * Melpa
-   I recommend using [[https://github.com/jwiegley/use-package][use-package]].
+  I recommend using [[https://github.com/jwiegley/use-package][use-package]].
 
-   #+begin_src emacs-lisp :tangle yes
+  #+begin_src emacs-lisp :tangle yes
 (use-package hg-histedit
   :ensure t
   :config
   (hg-histedit-setup))
-   #+end_src
+  #+end_src
