@@ -284,6 +284,8 @@ Histedit commit files can be generated when you specify 'mess' in an
 (defconst hg-histedit-filename-regexp "hg-histedit-")
 ;; e.g. hg-editor-IaDdJB.commit.hg.txt
 (defconst hg-histedit-commit-regexp "hg-editor-")
+;; Used for `borg' integration.
+(defconst hg-histedit-autoloads-file-regexp "hg-histedit-autoloads.el")
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist
@@ -291,6 +293,14 @@ Histedit commit files can be generated when you specify 'mess' in an
 
 (add-to-list 'auto-mode-alist
              (cons hg-histedit-commit-regexp 'hg-histedit-commit-mode))
+
+;; This is for when `borg' generated autoloads file for `hg-histedit'.
+;; Without this, the autoloads file will be readonly since it's set to
+;; `hg-histedit-mode' (because of the other `auto-mode-alist' entry).
+;; This needs to be last in the list of autoloads because we want it to take
+;; priority before the other autoloads.
+(add-to-list 'auto-mode-alist
+             (cons hg-histedit-autoloads-file-regexp 'fundamental-mode))
 
 (defvar vc-dir-mode-map)
 (defvar vc-hgcmd-log-view-mode-map)
